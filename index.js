@@ -1,37 +1,55 @@
 const express = require('express');
 require('dotenv').config();
+const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware to parse JSON requests
+// ✅ CORS FIRST
+const corsOptions = {
+  origin: 'http://127.0.0.1:5500',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // enable preflight response
+
+// ✅ Middleware
 app.use(express.json());
 
-// Import routes
+// ✅ Routes
 const pincodeRoutes = require('./routes/pincodeRoutes');
-
-// Use routes
+const imgBase64Routes = require('./routes/imgBase64Routes');
 app.use('/api', pincodeRoutes);
+app.use('/api/img-base64', imgBase64Routes);
 
-// Root endpoint for API info
+// ✅ Static access
+app.use('/outputs', express.static(path.join(__dirname, 'outputs')));
+
+// ✅ Root info
 app.get('/', (req, res) => {
   res.json({
-    message: 'Pincode to City/State API',
-    usage: 'GET /api/pincode/:pincode',
-    example: '/api/pincode/110001',
+    message: 'Micro APIs Collection',
+    endpoints: {
+      pincode: '/api/pincode/:pincode',
+      img_to_base64: 'POST /api/img-base64/to-base64 (form-data)',
+      base64_to_img: 'POST /api/img-base64/from-base64 (JSON)',
+    },
   });
 });
 
-// Error handling middleware
+// ✅ Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Start server
+// ✅ Start
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-// Vercel export
 module.exports = app;
+ 
