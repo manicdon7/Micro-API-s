@@ -14,11 +14,13 @@ app.use(cors());
 const pincodeRoutes = require('./routes/pincodeRoutes');
 const imgBase64Routes = require('./routes/imgBase64Routes');
 const qrRoutes = require('./routes/qrRoutes');
+const formatConverterRoutes = require('./routes/formatConverterRoutes'); // ✅ NEW
 
 // ✅ Use Routes
 app.use('/api', pincodeRoutes);
 app.use('/api/img-base64', imgBase64Routes);
 app.use('/api/qr', qrRoutes);
+app.use('/api', formatConverterRoutes); // ✅ NEW
 
 // ✅ Static folder for saved images
 app.use('/outputs', express.static(path.join(__dirname, 'outputs')));
@@ -32,6 +34,7 @@ app.get('/', (req, res) => {
       img_to_base64: 'POST /api/img-base64/to-base64 (form-data)',
       base64_to_img: 'POST /api/img-base64/from-base64 (JSON)',
       qr_generate: 'GET /api/qr/generate?data=HelloWorld',
+      convert_format: 'POST /api/convert-format (form-data with targetFormat)',
     },
   });
 });
