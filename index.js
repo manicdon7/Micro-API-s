@@ -6,13 +6,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ✅ CORS FIRST
-const corsOptions = {
-  origin: 'http://127.0.0.1:5500',
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true
-};
+
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // enable preflight response
 
