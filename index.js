@@ -16,7 +16,8 @@ const imgBase64Routes = require('./routes/imgBase64Routes');
 const qrRoutes = require('./routes/qrRoutes');
 const formatConverterRoutes = require('./routes/formatConverterRoutes');
 const webScraperRoutes = require('./routes/webScraperRoutes');
-const docLayoutRoutes = require('./routes/docLayoutRoutes'); // ✅ NEW
+const docLayoutRoutes = require('./routes/docLayoutRoutes');
+const colorPaletteRoutes = require('./routes/colorPaletteRoutes'); // ✅ NEW
 
 // ✅ Use Routes
 app.use('/api', pincodeRoutes);
@@ -24,7 +25,8 @@ app.use('/api/img-base64', imgBase64Routes);
 app.use('/api/qr', qrRoutes);
 app.use('/api', formatConverterRoutes);
 app.use('/api', webScraperRoutes);
-app.use('/api', docLayoutRoutes); // ✅ NEW
+app.use('/api', docLayoutRoutes);
+app.use('/api', colorPaletteRoutes); // ✅ NEW
 
 // ✅ Static folder for saved images
 app.use('/outputs', express.static(path.join(__dirname, 'outputs')));
@@ -41,6 +43,7 @@ app.get('/', (req, res) => {
       convert_format: 'POST /api/convert-format (form-data with targetFormat)',
       scrape: 'GET /api/scrape?url=https://example.com',
       doc_convert: 'POST /api/convert-doc (form-data: .html, .txt, .docx, .xls, .xlsx)',
+      color_palette: 'GET /api/colors/palette?seed=#3498db&type=analogous' // ✅ NEW
     },
   });
 });
