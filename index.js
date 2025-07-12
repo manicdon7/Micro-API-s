@@ -12,24 +12,24 @@ app.use(cors());
 
 // ✅ Route Imports
 const pincodeRoutes = require('./routes/pincodeRoutes');
-const imgBase64Routes = require('./routes/imgBase64Routes');
+// const imgBase64Routes = require('./routes/imgBase64Routes');
 const qrRoutes = require('./routes/qrRoutes');
-const formatConverterRoutes = require('./routes/formatConverterRoutes');
+// const formatConverterRoutes = require('./routes/formatConverterRoutes');
 const webScraperRoutes = require('./routes/webScraperRoutes');
-const docLayoutRoutes = require('./routes/docLayoutRoutes');
+// const docLayoutRoutes = require('./routes/docLayoutRoutes');
 const colorPaletteRoutes = require('./routes/colorPaletteRoutes'); // ✅ NEW
 
 // ✅ Use Routes
 app.use('/api', pincodeRoutes);
-app.use('/api/img-base64', imgBase64Routes);
+// app.use('/api/img-base64', imgBase64Routes);
 app.use('/api/qr', qrRoutes);
-app.use('/api', formatConverterRoutes);
+// app.use('/api', formatConverterRoutes);
 app.use('/api', webScraperRoutes);
-app.use('/api', docLayoutRoutes);
+// app.use('/api', docLayoutRoutes);
 app.use('/api', colorPaletteRoutes); // ✅ NEW
 
 // ✅ Static folder for saved images
-app.use('/outputs', express.static(path.join(__dirname, 'outputs')));
+// app.use('/outputs', express.static(path.join(__dirname, 'outputs')));
 
 // ✅ Root Route
 app.get('/', (req, res) => {
@@ -37,12 +37,12 @@ app.get('/', (req, res) => {
     message: '🧩 Micro APIs Collection',
     usage: {
       pincode: '/api/pincode/:pincode',
-      img_to_base64: 'POST /api/img-base64/to-base64 (form-data)',
-      base64_to_img: 'POST /api/img-base64/from-base64 (JSON)',
+      // img_to_base64: 'POST /api/img-base64/to-base64 (form-data)',
+      // base64_to_img: 'POST /api/img-base64/from-base64 (JSON)',
       qr_generate: 'GET /api/qr/generate?data=HelloWorld',
-      convert_format: 'POST /api/convert-format (form-data with targetFormat)',
+      // convert_format: 'POST /api/convert-format (form-data with targetFormat)',
       scrape: 'GET /api/scrape?url=https://example.com',
-      doc_convert: 'POST /api/convert-doc (form-data: .html, .txt, .docx, .xls, .xlsx)',
+      // doc_convert: 'POST /api/convert-doc (form-data: .html, .txt, .docx, .xls, .xlsx)',
       color_palette: 'GET /api/colors/palette?seed=#3498db&type=analogous' // ✅ NEW
     },
   });
