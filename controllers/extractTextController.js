@@ -5,10 +5,10 @@ const path = require('path');
 const fs = require('fs').promises;
 
 const cache = new NodeCache({ stdTTL: 3600, maxKeys: 1000 }); // Cache for 1 hour, limit to 1000 keys
-const tessdataPath = '/tmp/tessdata'; // Vercel-compatible path for traineddata
+const tessdataPath = '/tmp/tessdata/'; // Vercel-compatible path for traineddata
 
 // Multer setup for image uploads
-const uploadDir = '/tmp/images';
+const uploadDir = '/tmp/images/';
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
     try {
