@@ -31,7 +31,7 @@ app.use('/api', extractTextRoutes);
 app.use('/api', colorPaletteRoutes); 
 
 // ✅ Static folder for saved images
-app.use('/tmp', express.static(path.join(__dirname, 'tmp')));
+// app.use('/tmp', express.static(path.join(__dirname, 'tmp')));
 
 // ✅ Root Route
 app.get('/', (req, res) => {
