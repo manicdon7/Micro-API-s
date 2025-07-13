@@ -17,17 +17,20 @@ const UPLOAD_DIR = '/tmp/uploads'; // Vercel-compatible path for uploads
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
     try {
+      // Ensure the UPLOAD_DIR is created in /tmp
       await fs.mkdir(UPLOAD_DIR, { recursive: true });
-      cb(null, UPLOAD_DIR);
+      cb(null, UPLOAD_DIR); // Point multer's destination to /tmp/uploads
     } catch (error) {
-      cb(error);
+      // Log the error for debugging
+      console.error(`Error creating upload directory ${UPLOAD_DIR}:`, error.message);
+      cb(error); // Pass the error to multer
     }
   },
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
 
 const uploadV2 = multer({
-  storage,
+  storage: storage,
   fileFilter: (req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|pdf/; // Added PDF support
     const mimetype = allowedTypes.test(file.mimetype);
