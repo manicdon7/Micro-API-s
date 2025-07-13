@@ -6,25 +6,27 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ✅ Middleware
+// Middleware
 app.use(express.json());
 app.use(cors());
 
-// ✅ Route Imports
+// Route Imports
 const pincodeRoutes = require('./routes/pincodeRoutes');
-// const imgBase64Routes = require('./routes/imgBase64Routes');
+const extractTextRoutes = require('./routes/extractText');
+const imgBase64Routes = require('./routes/imgBase64Routes');
 const qrRoutes = require('./routes/qrRoutes');
 // const formatConverterRoutes = require('./routes/formatConverterRoutes');
 const webScraperRoutes = require('./routes/webScraperRoutes');
 // const docLayoutRoutes = require('./routes/docLayoutRoutes');
-const colorPaletteRoutes = require('./routes/colorPaletteRoutes'); // ✅ NEW
+const colorPaletteRoutes = require('./routes/colorPaletteRoutes');
 
-// ✅ Use Routes
+app.use(express.json({ limit: '10mb' }));
 app.use('/api', pincodeRoutes);
-// app.use('/api/img-base64', imgBase64Routes);
+app.use('/api/img-base64', imgBase64Routes);
 app.use('/api/qr', qrRoutes);
 // app.use('/api', formatConverterRoutes);
 app.use('/api', webScraperRoutes);
+app.use('/api', extractTextRoutes); // ✅ NEW
 // app.use('/api', docLayoutRoutes);
 app.use('/api', colorPaletteRoutes); // ✅ NEW
 
@@ -34,7 +36,7 @@ app.use('/api', colorPaletteRoutes); // ✅ NEW
 // ✅ Root Route
 app.get('/', (req, res) => {
   res.json({
-    message: '🧩 Micro APIs Collection',
+    message: '🚀Micro APIs Collection',
     usage: {
       pincode: '/api/pincode/:pincode',
       // img_to_base64: 'POST /api/img-base64/to-base64 (form-data)',
@@ -48,16 +50,17 @@ app.get('/', (req, res) => {
   });
 });
 
-// ✅ Error Handler
+// Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// ✅ Start Server
+
+// Start Server
 app.listen(port, () => {
   console.log(`🚀 Server running on port ${port}`);
 });
 
-// ✅ Vercel Export
+// Vercel Export
 module.exports = app;
