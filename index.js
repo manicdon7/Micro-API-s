@@ -39,13 +39,17 @@ app.get('/', (req, res) => {
     message: '🚀Micro APIs Collection',
     usage: {
       pincode: '/api/pincode/:pincode',
+      scrape: 'GET /api/scrape?url=https://example.com',
+      qr_generate: 'GET /api/qr/generate?data=HelloWorld&size=3&fgColor=#000000&bgColor=#FFFFFF',
+      extractionV1:'/api/v1/extract-base64 (JSON)',
+      extractionV2:'/api/v2/extract-base64 (JSON)',
+      extractionImageV1: '/api/v1/extract-image (form-data: image)',
+      extractionImageV2: '/api/v2/extract-image (form-data: image)',
       // img_to_base64: 'POST /api/img-base64/to-base64 (form-data)',
       // base64_to_img: 'POST /api/img-base64/from-base64 (JSON)',
-      qr_generate: 'GET /api/qr/generate?data=HelloWorld',
       // convert_format: 'POST /api/convert-format (form-data with targetFormat)',
-      scrape: 'GET /api/scrape?url=https://example.com',
       // doc_convert: 'POST /api/convert-doc (form-data: .html, .txt, .docx, .xls, .xlsx)',
-      color_palette: 'GET /api/colors/palette?seed=#3498db&type=analogous' // ✅ NEW
+      // color_palette: 'GET /api/colors/palette?seed=#3498db&type=analogous' // ✅ NEW
     },
   });
 });
