@@ -6,7 +6,7 @@ const fs = require('fs').promises;
 
 const cache = new NodeCache({ stdTTL: 3600, maxKeys: 1000 }); // Cache for 1 hour, limit to 1000 keys
 const tessdataPath = '/tmp/tessdata'; // Vercel-compatible path for traineddata
-const uploadDir = '/tmp/images'; // Change to '/tmp/uploads' if desired
+const uploadDir = '/tmp/uploads'; // Change to '/tmp/uploads' if desired
 
 // Multer setup for image uploads
 const storage = multer.diskStorage({
