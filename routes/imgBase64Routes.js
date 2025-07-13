@@ -4,7 +4,7 @@ const path = require('path');
 const multer = require('multer');
 
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '/temp' });
 
 // 🖼️ Image to Base64
 router.post('/to-base64', upload.single('image'), (req, res) => {
