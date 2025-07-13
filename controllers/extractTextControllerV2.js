@@ -12,7 +12,7 @@ dotenv.config();
 const cache = new NodeCache({ stdTTL: 3600, maxKeys: 1000 }); // Cache results for 1 hour
 const TESSDATA_PATH = '/tmp/tessdata'; // Vercel-compatible path for traineddata
 const UPLOAD_DIR = '/tmp/uploads'; // Vercel-compatible path for uploads
-
+const TESS_CORE_WASM_PATH = path.join(__dirname, '../node_modules/tesseract.js-core');
 // --- Multer Setup for Image Uploads ---
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
@@ -354,6 +354,7 @@ async function processImage(inputBuffer, languages) {
         worker = await Tesseract.createWorker(languages, oem, {
           cachePath: TESSDATA_PATH,
           tessdataPath: TESSDATA_PATH,
+          corePath: TESS_CORE_WASM_PATH,
           load_system_dawg: false,
           load_freq_dawg: false,
           logger: (m) => {
