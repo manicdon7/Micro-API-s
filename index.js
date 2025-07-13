@@ -26,12 +26,12 @@ app.use('/api/img-base64', imgBase64Routes);
 app.use('/api/qr', qrRoutes);
 // app.use('/api', formatConverterRoutes);
 app.use('/api', webScraperRoutes);
-app.use('/api', extractTextRoutes); // ✅ NEW
+app.use('/api', extractTextRoutes);
 // app.use('/api', docLayoutRoutes);
-app.use('/api', colorPaletteRoutes); // ✅ NEW
+app.use('/api', colorPaletteRoutes); 
 
 // ✅ Static folder for saved images
-// app.use('/outputs', express.static(path.join(__dirname, 'outputs')));
+app.use('/tmp', express.static(path.join(__dirname, 'tmp')));
 
 // ✅ Root Route
 app.get('/', (req, res) => {
