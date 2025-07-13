@@ -19,8 +19,8 @@ const qrRoutes = require('./routes/qrRoutes');
 const webScraperRoutes = require('./routes/webScraperRoutes');
 // const docLayoutRoutes = require('./routes/docLayoutRoutes');
 const colorPaletteRoutes = require('./routes/colorPaletteRoutes');
-
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '50mb' })); // Increase from 10mb to 20mb
+app.use(express.urlencoded({ extended: true, limit: '50mb' })); // Match for form-data
 app.use('/api', pincodeRoutes);
 app.use('/api/img-base64', imgBase64Routes);
 app.use('/api/qr', qrRoutes);

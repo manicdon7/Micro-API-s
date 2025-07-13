@@ -1,5 +1,7 @@
 const axios = require('axios');
 const NodeCache = require('node-cache');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const POLLINATIONS_API_URL = process.env.POLLINATIONS_API_URL || 'https://text.pollinations.ai/';
 const cache = new NodeCache({ stdTTL: 86400 }); // Cache for 24 hours

@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => cb(null, `${Date.now()}${path.extname(file.originalname)}`),
 });
 
-const upload = multer({
+const uploadV1 = multer({
   storage,
   fileFilter: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
@@ -64,7 +64,7 @@ async function cleanupTessdata() {
 }
 
 // Controller function to extract text from base64
-async function extractTextFromBase64(req, res) {
+async function extractTextFromBase64V1(req, res) {
   const { base64 } = req.body;
 
   // Validate input
@@ -120,7 +120,7 @@ async function extractTextFromBase64(req, res) {
 }
 
 // Controller function to extract text from image file
-async function extractTextFromImage(req, res) {
+async function extractTextFromImageV1(req, res) {
   const imageFile = req.file;
 
   // Validate input
@@ -174,4 +174,4 @@ async function extractTextFromImage(req, res) {
   }
 }
 
-module.exports = { extractTextFromBase64, extractTextFromImage, upload };
+module.exports = { extractTextFromBase64V1, extractTextFromImageV1, uploadV1 };
