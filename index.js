@@ -30,6 +30,9 @@ app.use('/api', extractTextRoutes);
 // app.use('/api', docLayoutRoutes);
 app.use('/api', colorPaletteRoutes); 
 
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
 // ✅ Static folder for saved images
 // app.use('/tmp', express.static(path.join(__dirname, 'tmp')));
 
