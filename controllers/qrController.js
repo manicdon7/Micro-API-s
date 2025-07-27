@@ -33,7 +33,7 @@ const getHexColor = async (colorInput) => {
 };
 
 exports.generateQRCode = async (req, res) => {
-  const { data, size, type, fgColor, bgColor } = req.query;
+  const { data, size, type, fgColor, bgColor } = req.params;
 
   // Validate data parameter
   if (!data) {
