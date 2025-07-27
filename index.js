@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
     usage: {
       pincode: '/api/pincode/:pincode',
       scrape: 'GET /api/scrape?url=https://example.com',
-      qr_generate: 'GET /api/generate-qr?data=HelloWorld&size=3&fgColor=#000000&bgColor=#FFFFFF',
+      qr_generate: 'GET /api/qr_generate?data=HelloWorld&size=3&fgColor=#000000&bgColor=#FFFFFF',
       extractionV1:'/api/v1/extract-base64 (JSON)',
       extractionV2:'/api/v2/extract-base64 (JSON)',
       extractionImageV1: '/api/v1/extract-image (form-data: image)',
