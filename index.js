@@ -23,7 +23,7 @@ app.use(express.json({ limit: '50mb' })); // Increase from 10mb to 20mb
 app.use(express.urlencoded({ extended: true, limit: '50mb' })); // Match for form-data
 app.use('/api', pincodeRoutes);
 app.use('/api/img-base64', imgBase64Routes);
-app.use('/api/generate-qr', qrRoutes);
+app.use('/api', qrRoutes);
 // app.use('/api', formatConverterRoutes);
 app.use('/api', webScraperRoutes);
 app.use('/api', extractTextRoutes);
