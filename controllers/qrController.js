@@ -33,14 +33,14 @@ const getHexColor = async (colorInput) => {
 };
 
 exports.generateQRCode = async (req, res) => {
-  const { data, size, type, fgColor, bgColor } = req.params; // ✅ All from path params now
+  const { data, size, type, fgColor, bgColor } = req.body; // ✅ All from request body (JSON)
 
-  // Validate required parameter
+  // Validate required field
   if (!data) {
-    return res.status(400).json({ error: 'Missing required "data" path parameter' });
+    return res.status(400).json({ error: 'Missing required "data" in request body' });
   }
 
-  // Set default values with optional validation for others
+  // Set defaults
   const qrMargin = 1;
   const qrScale = size && !isNaN(size) ? parseInt(size) : 7;
   const qrType = ['png', 'svg', 'jpeg', 'jpg'].includes(type) ? type : 'png';
@@ -53,7 +53,6 @@ exports.generateQRCode = async (req, res) => {
     return res.status(400).json({ error: 'Background and foreground colors cannot be the same' });
   }
 
-  // Check for API errors
   if (qrFgColor === 'Invalid color' || qrBgColor === 'Invalid color') {
     return res.status(400).json({ error: 'Invalid color input' });
   }
